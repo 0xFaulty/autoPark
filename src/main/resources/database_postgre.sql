@@ -105,18 +105,18 @@ CREATE TABLE routes (
 );
 
 CREATE TABLE autos (
-  "id"          SERIAL CONSTRAINT auto_pkey PRIMARY KEY,
-  "num"         TEXT,
-  "color"       TEXT,
-  "mark"        TEXT,
+  "id"           SERIAL CONSTRAINT auto_pkey PRIMARY KEY,
+  "num"          TEXT,
+  "color"        TEXT,
+  "mark"         TEXT,
   "personnel_id" INTEGER REFERENCES auto_personnel (id)
   ON UPDATE NO ACTION
 );
 
 CREATE TABLE journal (
   "id"       SERIAL CONSTRAINT journal_pkey PRIMARY KEY,
-  "time_out" TIME WITHOUT TIME ZONE,
-  "time_in"  TIME WITHOUT TIME ZONE,
+  "time_out" TIMESTAMP NOT NULL,
+  "time_in"  TIMESTAMP NOT NULL,
   "auto_id"  INTEGER REFERENCES autos (id),
   "route_id" INTEGER REFERENCES routes (id)
   ON UPDATE NO ACTION
@@ -147,13 +147,13 @@ INSERT INTO autos ("id", "num", "color", "mark", "personnel_id") VALUES
   (5, 'м666оо', 'Blue', 'Dodge', 3);
 
 INSERT INTO journal ("id", "time_out", "time_in", "auto_id", "route_id") VALUES
-  (1, '00:00:01', '21:44:00', 3, 2),
-  (2, '02:00:01', '14:44:00', 3, 1),
-  (3, '04:00:01', '07:44:00', 3, 1),
-  (4, '05:00:01', '19:44:00', 5, 1),
-  (5, '08:00:01', '19:44:00', 2, 3),
-  (6, '01:00:01', '02:44:00', 2, 2),
-  (7, '06:00:01', '10:44:00', 2, 1),
-  (8, '09:02:01', '12:44:00', 2, 1),
-  (9, '17:00:07', '18:44:00', 2, 1),
-  (10, '08:17:04', '19:44:00', 3, 3);
+  (1, '2012-12-13 00:00:01', '2012-12-13 21:44:00', 3, 2),
+  (2, '2012-10-13 02:00:01', '2012-10-13 14:44:00', 3, 1),
+  (3, '2012-12-13 04:00:01', '2012-12-13 07:44:00', 3, 1),
+  (4, '2015-12-13 05:00:01', '2015-12-13 19:44:00', 5, 1),
+  (5, '2013-12-13 08:00:01', '2013-12-13 19:44:00', 2, 3),
+  (6, '2016-10-13 01:00:01', '2016-10-13 02:44:00', 2, 2),
+  (7, '2016-12-13 06:00:01', '2016-12-13 10:44:00', 2, 1),
+  (8, '2012-12-13 09:02:01', '2012-12-13 12:44:00', 2, 1),
+  (9, '2017-10-13 17:00:07', '2017-10-13 18:44:00', 2, 1),
+  (10, '2012-12-13 08:17:04', '2012-12-13 19:44:00', 3, 3);

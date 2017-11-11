@@ -19,6 +19,9 @@ public class Auto {
     @Column(name = "mark")
     private String mark;
 
+    @Transient
+    private String personnel_str;
+
     @ManyToOne
     @JoinColumn(name = "personnel_id")
     private AutoPersonnel personnel_id;
@@ -63,14 +66,17 @@ public class Auto {
         this.personnel_id = personnel_id;
     }
 
+    public String getPersonnel_str() {
+        return personnel_str;
+    }
+
+    public void setPersonnel_str(String personnel_str) {
+        this.personnel_str = personnel_str;
+    }
+
     @Override
     public String toString() {
-        return "Auto{" +
-                "id=" + id +
-                ", num='" + num + '\'' +
-                ", color='" + color + '\'' +
-                ", mark='" + mark + '\'' +
-                '}';
+        return "[" + id + "] " + num + " " + color + " " + mark;
     }
 
 }

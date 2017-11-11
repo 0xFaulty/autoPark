@@ -49,4 +49,11 @@ public class AutoPersonnelServiceImpl implements AutoPersonnelService {
         return this.personnelDao.listAutoPersonnel();
     }
 
+    @Override
+    public AutoPersonnel convert(String str) {
+        str = str.substring(str.indexOf('[') + 1, str.indexOf(']'));
+        Integer id = Integer.parseInt(str);
+        return getById(id);
+    }
+
 }

@@ -1,0 +1,23 @@
+Report about routes records:
+
+	Route: 'Метро'
+	Best time: 04:43:59
+	Auto number: г777тк
+	Personnel: Петя Обломов
+
+	Route: 'Аэропорт'
+	Best time: 04:43:53
+	Auto number: г777тк
+	Personnel: Петя Обломов
+
+	Route: 'Домой'
+	Best time: 14:26:56
+	Auto number: х778нн
+	Personnel: Петя Обломов
+
+	Route: 'Наверх'
+	Best time: 14:11:21
+	Auto number: м666оо
+	Personnel: Коля Расломов
+
+

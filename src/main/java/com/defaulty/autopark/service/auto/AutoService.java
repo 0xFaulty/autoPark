@@ -1,6 +1,7 @@
 package com.defaulty.autopark.service.auto;
 
 import com.defaulty.autopark.model.data.Auto;
+import com.defaulty.autopark.model.data.AutoPersonnel;
 
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface AutoService {
 
     List<Auto> list();
 
+    Auto convert(String str);
 }

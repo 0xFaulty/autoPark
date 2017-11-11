@@ -30,7 +30,8 @@
             <form id="logoutForm" method="POST" action="${contextPath}/logout">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
-            <h2>Welcome '${pageContext.request.userPrincipal.name}' | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+            <h2>Welcome '${pageContext.request.userPrincipal.name}' | <a
+                    onclick="document.forms['logoutForm'].submit()">Logout</a>
             </h2>
         </c:if>
     </div>
@@ -40,6 +41,9 @@
     <div class="page-header"><a href="${contextPath}/journal" title="Journal page">Journal page</a></div>
     <div class="page-header"><a href="${contextPath}/personnel" title="Personnel page">Personnel page</a></div>
     <div class="page-header"><a href="${contextPath}/routes" title="Routes page">Routes page</a></div>
+
+    <div class="page-header"><a href="${contextPath}/report" title="Routes page">Reports</a></div>
+
 </div>
 
 <!-- /container -->

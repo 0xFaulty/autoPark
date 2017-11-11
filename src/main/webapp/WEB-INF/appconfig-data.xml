@@ -50,4 +50,6 @@
     <bean id="autoPersonnelRepositoryImpl" class="com.defaulty.autopark.dao.personnel.AutoPersonnelRepositoryImpl"/>
     <bean id="routeRepositoryImpl" class="com.defaulty.autopark.dao.route.RouteRepositoryImpl"/>
 
+    <bean id="fileCRUDImpl" class="com.defaulty.autopark.service.report.FileCRUDImpl"/>
+
 </beans>

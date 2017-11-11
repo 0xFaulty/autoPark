@@ -3,6 +3,8 @@ package com.defaulty.autopark.controller;
 import com.defaulty.autopark.model.user.User;
 import com.defaulty.autopark.service.user.UserService;
 import com.defaulty.autopark.validator.UserValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,12 +26,14 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
     @RequestMapping(value = "admin", method = RequestMethod.GET)
     public String itemList(Model model) {
         model.addAttribute("editForm", new User());
         model.addAttribute("itemList", this.userService.list());
 
-        return "admin";
+        return "user/admin";
     }
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
@@ -45,7 +49,7 @@ public class UserController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "admin";
+            return "user/admin";
         }
 
         if (editForm.getNewPassword().equals(""))
@@ -79,14 +83,14 @@ public class UserController {
 
         model.addAttribute("itemList", this.userService.list());
 
-        return "admin";
+        return "user/admin";
     }
 
     @RequestMapping("/admin/addresses/{id}")
     public String addressUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("setAddresses", this.userService.getById(id).getAddresses().toArray());
 
-        return "addresses";
+        return "user/addresses";
     }
 
     @RequestMapping("/admin/activetoggle/{id}")

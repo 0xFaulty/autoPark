@@ -49,4 +49,11 @@ public class JournalServiceImpl implements JournalService {
         return this.journalDao.listJournals();
     }
 
+    @Override
+    public Journal convert(String str) {
+        str = str.substring(str.indexOf('[') + 1, str.indexOf(']'));
+        Integer id = Integer.parseInt(str);
+        return getById(id);
+    }
+
 }

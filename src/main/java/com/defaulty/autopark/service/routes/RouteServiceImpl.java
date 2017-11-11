@@ -49,4 +49,11 @@ public class RouteServiceImpl implements RouteService {
         return this.routeDao.listRoutes();
     }
 
+    @Override
+    public Route convert(String str) {
+        str = str.substring(str.indexOf('[') + 1, str.indexOf(']'));
+        Integer id = Integer.parseInt(str);
+        return getById(id);
+    }
+
 }

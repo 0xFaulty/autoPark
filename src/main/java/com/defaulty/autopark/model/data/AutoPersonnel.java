@@ -21,7 +21,7 @@ public class AutoPersonnel {
     @Column(name = "father_name")
     private String father_name;
 
-    @OneToMany(mappedBy = "personnel_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "personnel_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Auto> autos;
 
     public Long getId() {
@@ -66,12 +66,7 @@ public class AutoPersonnel {
 
     @Override
     public String toString() {
-        return "AutoPersonnel{" +
-                "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", father_name='" + father_name + '\'' +
-                '}';
+        return "[" + id + "] " + first_name + " " + last_name + " " + father_name;
     }
 
 }

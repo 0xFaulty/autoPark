@@ -1,9 +1,10 @@
 package com.defaulty.autopark.controller;
 
-import com.defaulty.autopark.filter.RepairEncoding;
 import com.defaulty.autopark.model.data.Route;
 import com.defaulty.autopark.service.routes.RouteService;
 import com.defaulty.autopark.validator.RouteValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.io.UnsupportedEncodingException;
-
 @Controller
 public class RouteController {
 
@@ -23,6 +22,8 @@ public class RouteController {
 
     @Autowired
     private RouteValidator routeValidator;
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value = "/routes", method = RequestMethod.GET)
     public String list(Model model) {
@@ -67,6 +68,5 @@ public class RouteController {
 
         return "/tables/routes";
     }
-
 
 }

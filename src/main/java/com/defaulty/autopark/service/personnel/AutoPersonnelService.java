@@ -18,4 +18,5 @@ public interface AutoPersonnelService {
 
     List<AutoPersonnel> list();
 
+    AutoPersonnel convert(String str);
 }

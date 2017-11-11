@@ -4,6 +4,8 @@ import com.defaulty.autopark.model.user.User;
 import com.defaulty.autopark.service.security.SecurityService;
 import com.defaulty.autopark.service.user.UserService;
 import com.defaulty.autopark.validator.UserValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,11 +30,13 @@ public class AuthController {
     @Autowired
     private UserValidator userValidator;
 
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
-        return "registration";
+        return "auth/registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -40,7 +44,7 @@ public class AuthController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "auth/registration";
         }
 
         userService.save(userForm);
@@ -66,7 +70,7 @@ public class AuthController {
             model.addAttribute("message", "Logged out successfully.");
         }
 
-        return "login";
+        return "auth/login";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
@@ -85,7 +89,7 @@ public class AuthController {
             return "redirect:/login";
         }
 
-        return "welcome";
+        return "auth/welcome";
     }
 
     @RequestMapping(value = "/favicon.ico", method = RequestMethod.GET)

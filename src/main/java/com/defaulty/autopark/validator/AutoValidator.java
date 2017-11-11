@@ -29,6 +29,7 @@ public class AutoValidator implements Validator {
         validateNumber(auto, errors);
         validateColor(auto, errors);
         validateMark(auto, errors);
+        validatePersonnel(auto, errors);
     }
 
     private void validateNumber(Auto auto, Errors errors) {
@@ -38,7 +39,6 @@ public class AutoValidator implements Validator {
         if (auto.getNum().length() != 6) {
             errors.rejectValue("num", "Size.autoForm.number");
         }
-
     }
 
     private void validateColor(Auto auto, Errors errors) {
@@ -51,6 +51,10 @@ public class AutoValidator implements Validator {
         auto.setMark(convert(auto.getMark()));
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mark", "Required");
+    }
+
+    private void validatePersonnel(Auto auto, Errors errors) {
+        auto.setPersonnel_str(convert(auto.getPersonnel_str()));
     }
 
     private String convert(String s){

@@ -18,4 +18,6 @@ public interface RouteService {
 
     List<Route> list();
 
+    Route convert(String str);
+
 }

@@ -1,0 +1,21 @@
+Report about autos owners:
+
+Personnel: Вася Васильев
+	 Auto: Red Nissan а999ва 
+
+Personnel: Петя Обломов
+	 Auto: Yellow Syzuki х778нн 
+	 Auto: Green Syzuki г777тк 
+	 Auto: Black Syzuki с779пп 
+
+Personnel: Коля Расломов
+	 Auto: Blue Dodge м666оо 
+
+Personnel: Виталий Адеев
+
+Personnel: Алексей Хрущёв
+	 Auto: Синий Ваз к979оо 
+
+Personnel: Виталий Великий
+
+

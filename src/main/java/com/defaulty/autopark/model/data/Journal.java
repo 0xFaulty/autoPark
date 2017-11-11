@@ -1,5 +1,7 @@
 package com.defaulty.autopark.model.data;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,12 +14,18 @@ public class Journal {
     private Long id;
 
     @Column(name = "time_out")
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date time_out;
 
     @Column(name = "time_in")
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date time_in;
+
+    @Transient
+    private String time_out_str;
+
+    @Transient
+    private String time_in_str;
 
     @ManyToOne
     @JoinColumn(name = "auto_id")
@@ -26,6 +34,12 @@ public class Journal {
     @ManyToOne
     @JoinColumn(name = "route_id")
     private Route route_id;
+
+    @Transient
+    private String auto_str;
+
+    @Transient
+    private String route_str;
 
     public Long getId() {
         return id;
@@ -65,6 +79,38 @@ public class Journal {
 
     public void setRoute_id(Route route_id) {
         this.route_id = route_id;
+    }
+
+    public String getAuto_str() {
+        return auto_str;
+    }
+
+    public void setAuto_str(String auto_str) {
+        this.auto_str = auto_str;
+    }
+
+    public String getRoute_str() {
+        return route_str;
+    }
+
+    public void setRoute_str(String route_str) {
+        this.route_str = route_str;
+    }
+
+    public String getTime_out_str() {
+        return time_out_str;
+    }
+
+    public void setTime_out_str(String time_out_str) {
+        this.time_out_str = time_out_str;
+    }
+
+    public String getTime_in_str() {
+        return time_in_str;
+    }
+
+    public void setTime_in_str(String time_in_str) {
+        this.time_in_str = time_in_str;
     }
 
     @Override

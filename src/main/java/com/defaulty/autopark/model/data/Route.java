@@ -14,7 +14,7 @@ public class Route {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "route_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "route_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Route> route_id;
 
     public Long getId() {
@@ -43,10 +43,7 @@ public class Route {
 
     @Override
     public String toString() {
-        return "Route{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "[" + id + "] " + name;
     }
 
 }

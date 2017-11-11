@@ -55,34 +55,41 @@
             </spring:bind>
         </c:if>
 
-        <spring:bind path="time_out">
+        <spring:bind path="time_out_str">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="datetime-local" step="1" path="time_out" class="form-control" placeholder="Time out"/>
+                <form:input type="datetime-local" step="1" path="time_out_str" class="form-control" placeholder="Time out"/>
                 <form:errors path="time_out"/>
             </div>
         </spring:bind>
 
-        <spring:bind path="time_in">
+        <spring:bind path="time_in_str">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="datetime-local" step="1" path="time_in" class="form-control" placeholder="Time in"/>
+                <form:input type="datetime-local" step="1" path="time_in_str" class="form-control" placeholder="Time in"/>
                 <form:errors path="time_in"/>
             </div>
         </spring:bind>
 
-        <spring:bind path="auto_id">
+        <spring:bind path="auto_str">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="list" path="auto_id" class="form-control" placeholder="Auto id"/>
-                <form:errors path="auto_id"/>
+                <form:select path="auto_str" cssClass="form-control">
+                    <c:forEach var='autoList' items='${autoList}' >
+                        <form:option value="${autoList}" />
+                    </c:forEach>
+                </form:select>
+                <form:errors path="auto_str"/>
             </div>
         </spring:bind>
 
-        <spring:bind path="route_id">
+        <spring:bind path="route_str">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="route_id" class="form-control" placeholder="Route id"/>
-                <form:errors path="route_id"/>
+                <form:select path="route_str" cssClass="form-control">
+                    <c:forEach var='routeList' items='${routeList}' >
+                        <form:option value="${routeList}" />
+                    </c:forEach>
+                </form:select>
+                <form:errors path="route_str"/>
             </div>
         </spring:bind>
-
 
         <c:if test="${empty editForm.id}">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>

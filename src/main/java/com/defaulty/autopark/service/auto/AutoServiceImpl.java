@@ -49,4 +49,11 @@ public class AutoServiceImpl implements AutoService {
         return this.autoDao.listAutos();
     }
 
+    @Override
+    public Auto convert(String str) {
+        str = str.substring(str.indexOf('[') + 1, str.indexOf(']'));
+        Integer id = Integer.parseInt(str);
+        return getById(id);
+    }
+
 }

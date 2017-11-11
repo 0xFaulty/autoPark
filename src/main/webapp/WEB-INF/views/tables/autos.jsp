@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -76,13 +76,16 @@
             </div>
         </spring:bind>
 
-        <spring:bind path="personnel_id">
+        <spring:bind path="personnel_str">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="list" path="personnel_id" class="form-control" placeholder="Personnel"/>
-                <form:errors path="personnel_id"/>
+                <form:select path="personnel_str" cssClass="form-control">
+                    <c:forEach var='persList' items='${personnelList}' >
+                        <form:option value="${persList}" />
+                    </c:forEach>
+                </form:select>
+                <form:errors path="personnel_str"/>
             </div>
         </spring:bind>
-
 
         <c:if test="${empty editForm.id}">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Add Auto</button>

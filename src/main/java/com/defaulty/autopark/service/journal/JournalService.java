@@ -1,5 +1,6 @@
 package com.defaulty.autopark.service.journal;
 
+import com.defaulty.autopark.model.data.AutoPersonnel;
 import com.defaulty.autopark.model.data.Journal;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public interface JournalService {
 
     List<Journal> list();
 
+    Journal convert(String str);
 }
