@@ -11,6 +11,7 @@ IDE: IntelliJ IDEA
 
 Настройки подключения к базе данных находятся в'/resources/database.properties'. Для запуска поместить в <TOMCAT_HOME>\webapps, после чего зайти на http://localhost:8080/autoPark/ для локального запуска или по адресу используемого для внешнего сервера.
 
-![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex1.png)
-![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex1.png)
+![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex4.png)
+![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex3.png)
+![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex2.png)
 ![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex1.png)
