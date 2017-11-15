@@ -5,13 +5,12 @@
 Основные использованные технологии: Spring, Hibernate, mySQL, Tomcat, Maven
 IDE: IntelliJ IDEA
 
+Цель проекта включает в себя создание инструмента для управления и просмотра данных автопарка. Разделение ролей предпологает роль администратора с функциями управления всеми таблицами, а также управления всеми пользователями сервиса и генерацию отчётов таблиц. Роль пользователя включает в себя просмотр таблиц данных, и скачивание отчётов по этим таблицам, остальные действия не отображаюся для пользователя, а также недоступны при принудительном их вызове. 
+
 Для использования:
-Настройки подключения к базе mySQL в файле '/resources/database.properties'.
 Для быстрого заполнения базы данный для проверки выполнить скрипт '/resources/database_postgre.sql' для PostgreSQL или '/resources/database_mysql.sql' для MySQL.
 
-Настройки подключения к базе данных находятся в'/resources/database.properties'. Для запуска поместить в <TOMCAT_HOME>\webapps, после чего зайти на http://localhost:8080/autoPark/ для локального запуска или по адресу используемого для внешнего сервера.
+Настройки подключения к базе данных находятся в'/resources/database.properties'. Для запуска поместить в <TOMCAT_HOME>\webapps, после чего зайти на http://localhost:8080/autoPark/ для локального запуска или по адресу внешнего сервера при удаленном развертывании.
 
-![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex4.png)
-![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex3.png)
-![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex2.png)
-![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/ex1.png)
+![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/s1.png)
+![alt text](https://raw.githubusercontent.com/0xFaulty/autoPark/dev/screenshots/s2.png)
