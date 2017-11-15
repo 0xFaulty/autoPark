@@ -11,8 +11,10 @@ import com.defaulty.autopark.service.personnel.AutoPersonnelService;
 import com.defaulty.autopark.service.routes.RouteService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.File;
@@ -40,16 +42,29 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     private RouteService routeService;
 
-    private static HashMap<ReportType, File> reportHash = new HashMap<>();
-
     @PersistenceContext
     private EntityManager entityManager;
 
-    public ReportServiceImpl() {
+    private static HashMap<ReportType, File> reportHash = new HashMap<>();
+
+    @Value("${table.report.path}")
+    private String pathString;
+
+    private static File path;
+
+//    @Resource(name="myProperties")
+//    private Properties myProperties;
+
+    @PostConstruct
+    public void init() {
+        path = new File(System.getenv("TEMP"));
+        if (pathString != null) {
+            File file = new File(pathString);
+            if (file.exists()) path = file;
+        }
+
         recheckReports();
     }
-
-    private static final File path = new File("C:/Users/0xfaulty/YandexDisk/Sourses/Java/Auto_park/reports/");
 
     @Override
     public File getFileFor(ReportType type) {
