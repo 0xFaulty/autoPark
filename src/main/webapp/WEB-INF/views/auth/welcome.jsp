@@ -36,7 +36,9 @@
         </c:if>
     </div>
 
+    <c:if test="${editActive}">
     <div class="page-header"><a href="${contextPath}/admin" title="Admin page">Admin page</a></div>
+    </c:if>
     <div class="page-header"><a href="${contextPath}/autos" title="Autos page">Autos page</a></div>
     <div class="page-header"><a href="${contextPath}/journal" title="Journal page">Journal page</a></div>
     <div class="page-header"><a href="${contextPath}/personnel" title="Personnel page">Personnel page</a></div>

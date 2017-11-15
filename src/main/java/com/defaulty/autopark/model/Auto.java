@@ -1,4 +1,4 @@
-package com.defaulty.autopark.model.data;
+package com.defaulty.autopark.model;
 
 import javax.persistence.*;
 
@@ -19,12 +19,12 @@ public class Auto {
     @Column(name = "mark")
     private String mark;
 
-    @Transient
-    private String personnel_str;
-
     @ManyToOne
     @JoinColumn(name = "personnel_id")
-    private AutoPersonnel personnel_id;
+    private AutoPersonnel autoPersonnel;
+
+    @Transient
+    private String autoPersonnelStr;
 
     public Long getId() {
         return id;
@@ -58,20 +58,20 @@ public class Auto {
         this.mark = mark;
     }
 
-    public AutoPersonnel getPersonnel_id() {
-        return personnel_id;
+    public AutoPersonnel getAutoPersonnel() {
+        return autoPersonnel;
     }
 
-    public void setPersonnel_id(AutoPersonnel personnel_id) {
-        this.personnel_id = personnel_id;
+    public void setAutoPersonnel(AutoPersonnel autoPersonnel) {
+        this.autoPersonnel = autoPersonnel;
     }
 
-    public String getPersonnel_str() {
-        return personnel_str;
+    public String getAutoPersonnelStr() {
+        return autoPersonnelStr;
     }
 
-    public void setPersonnel_str(String personnel_str) {
-        this.personnel_str = personnel_str;
+    public void setAutoPersonnelStr(String autoPersonnelStr) {
+        this.autoPersonnelStr = autoPersonnelStr;
     }
 
     @Override

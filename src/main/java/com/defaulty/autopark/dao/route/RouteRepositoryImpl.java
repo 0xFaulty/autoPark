@@ -1,7 +1,6 @@
 package com.defaulty.autopark.dao.route;
 
-import com.defaulty.autopark.model.data.Route;
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.Route;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;

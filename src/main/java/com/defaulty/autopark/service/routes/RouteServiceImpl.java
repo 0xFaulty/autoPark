@@ -1,7 +1,7 @@
 package com.defaulty.autopark.service.routes;
 
 import com.defaulty.autopark.dao.route.RouteRepository;
-import com.defaulty.autopark.model.data.Route;
+import com.defaulty.autopark.model.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

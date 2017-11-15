@@ -1,6 +1,6 @@
 package com.defaulty.autopark.controller;
 
-import com.defaulty.autopark.model.data.Route;
+import com.defaulty.autopark.model.Route;
 import com.defaulty.autopark.service.routes.RouteService;
 import com.defaulty.autopark.validator.RouteValidator;
 import org.slf4j.Logger;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class RouteController {
 
@@ -23,11 +25,19 @@ public class RouteController {
     @Autowired
     private RouteValidator routeValidator;
 
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value = "/routes", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("editForm", new Route());
+        if (httpServletRequest.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("editActive", true);
+            model.addAttribute("editForm", new Route());
+        } else
+            model.addAttribute("editActive", false);
+
         model.addAttribute("itemList", this.routeService.list());
 
         return "tables/routes";
@@ -35,6 +45,9 @@ public class RouteController {
 
     @RequestMapping(value = "routes/add", method = RequestMethod.POST)
     public String add(@ModelAttribute("editForm") Route editForm, BindingResult bindingResult, Model model) {
+
+        if (!httpServletRequest.isUserInRole("ROLE_ADMIN"))
+            return "redirect:/tables/autos";
 
         model.addAttribute("itemList", this.routeService.list());
 
@@ -62,8 +75,12 @@ public class RouteController {
 
     @RequestMapping("/routes/edit/{id}")
     public String edit(@PathVariable("id") int id, Model model) {
+        if (httpServletRequest.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("editActive", true);
+            model.addAttribute("editForm", this.routeService.getById(id));
+        } else
+            model.addAttribute("editActive", false);
 
-        model.addAttribute("editForm", this.routeService.getById(id));
         model.addAttribute("itemList", this.routeService.list());
 
         return "/tables/routes";

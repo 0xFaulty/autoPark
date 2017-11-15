@@ -4,18 +4,19 @@ Personnel: Вася Васильев
 	 Auto: Red Nissan а999ва 
 
 Personnel: Петя Обломов
-	 Auto: Yellow Syzuki х778нн 
 	 Auto: Green Syzuki г777тк 
 	 Auto: Black Syzuki с779пп 
+	 Auto: Yellow Syzuki х778нн 
 
 Personnel: Коля Расломов
 	 Auto: Blue Dodge м666оо 
+	 Auto: Синий Ваз а000вв 
 
 Personnel: Виталий Адеев
+	 Auto: Красный Opel г843вз 
 
 Personnel: Алексей Хрущёв
-	 Auto: Синий Ваз к979оо 
 
-Personnel: Виталий Великий
+Personnel: Виктор Носов
 
 

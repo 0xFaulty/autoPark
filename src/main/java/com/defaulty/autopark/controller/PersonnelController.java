@@ -1,6 +1,6 @@
 package com.defaulty.autopark.controller;
 
-import com.defaulty.autopark.model.data.AutoPersonnel;
+import com.defaulty.autopark.model.AutoPersonnel;
 import com.defaulty.autopark.service.personnel.AutoPersonnelService;
 import com.defaulty.autopark.validator.AutoPersonnelValidator;
 import org.slf4j.Logger;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class PersonnelController {
 
@@ -23,11 +25,19 @@ public class PersonnelController {
     @Autowired
     private AutoPersonnelValidator autoPersonnelValidator;
 
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value = "/personnel", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("editForm", new AutoPersonnel());
+        if (httpServletRequest.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("editActive", true);
+            model.addAttribute("editForm", new AutoPersonnel());
+        } else
+            model.addAttribute("editActive", false);
+
         model.addAttribute("itemList", this.autoPersonnelService.list());
 
         return "tables/personnel";
@@ -35,6 +45,9 @@ public class PersonnelController {
 
     @RequestMapping(value = "personnel/add", method = RequestMethod.POST)
     public String add(@ModelAttribute("editForm") AutoPersonnel editForm, BindingResult bindingResult, Model model) {
+
+        if (!httpServletRequest.isUserInRole("ROLE_ADMIN"))
+            return "redirect:/tables/autos";
 
         model.addAttribute("itemList", this.autoPersonnelService.list());
 
@@ -62,8 +75,12 @@ public class PersonnelController {
 
     @RequestMapping("/personnel/edit/{id}")
     public String edit(@PathVariable("id") int id, Model model) {
+        if (httpServletRequest.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("editActive", true);
+            model.addAttribute("editForm", this.autoPersonnelService.getById(id));
+        } else
+            model.addAttribute("editActive", false);
 
-        model.addAttribute("editForm", this.autoPersonnelService.getById(id));
         model.addAttribute("itemList", this.autoPersonnelService.list());
 
         return "/tables/personnel";

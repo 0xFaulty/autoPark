@@ -1,8 +1,8 @@
 package com.defaulty.autopark.service.security;
 
 import com.defaulty.autopark.dao.user.UserRepository;
-import com.defaulty.autopark.model.user.Role;
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.Role;
+import com.defaulty.autopark.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

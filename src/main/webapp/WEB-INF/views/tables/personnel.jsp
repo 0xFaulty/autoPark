@@ -40,52 +40,54 @@
 
     <c:url var="addAction" value="/personnel/add"/>
 
-    <form:form action="${addAction}" method="POST" modelAttribute="editForm" class="form-signin">
-        <div class="page-header">
-            <c:if test="${empty editForm.id}"><h2 class="form-signin-heading">Add</h2></c:if>
-            <c:if test="${!empty editForm.id}"><h2 class="form-signin-heading">Edit</h2></c:if>
-        </div>
-        <c:if test="${!empty editForm.id}">
-            <spring:bind path="id">
+    <c:if test="${editActive}">
+        <form:form action="${addAction}" method="POST" modelAttribute="editForm" class="form-signin">
+            <div class="page-header">
+                <c:if test="${empty editForm.id}"><h2 class="form-signin-heading">Add</h2></c:if>
+                <c:if test="${!empty editForm.id}"><h2 class="form-signin-heading">Edit</h2></c:if>
+            </div>
+            <c:if test="${!empty editForm.id}">
+                <spring:bind path="id">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <form:input path="id" readonly="true" size="8" class="form-control"/>
+                        <form:hidden path="id"/>
+                        <form:errors path="id"/>
+                    </div>
+                </spring:bind>
+            </c:if>
+
+            <spring:bind path="first_name">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input path="id" readonly="true" size="8" class="form-control"/>
-                    <form:hidden path="id"/>
-                    <form:errors path="id"/>
+                    <form:input type="text" path="first_name" class="form-control" placeholder="First Name"/>
+                    <form:errors path="first_name"/>
                 </div>
             </spring:bind>
-        </c:if>
 
-        <spring:bind path="first_name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="first_name" class="form-control" placeholder="First Name"/>
-                <form:errors path="first_name"/>
-            </div>
-        </spring:bind>
+            <spring:bind path="last_name">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input type="text" path="last_name" class="form-control" placeholder="Last Name"/>
+                    <form:errors path="last_name"/>
+                </div>
+            </spring:bind>
 
-        <spring:bind path="last_name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="last_name" class="form-control" placeholder="Last Name"/>
-                <form:errors path="last_name"/>
-            </div>
-        </spring:bind>
+            <spring:bind path="father_name">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input type="text" path="father_name" class="form-control" placeholder="Father Name"/>
+                    <form:errors path="father_name"/>
+                </div>
+            </spring:bind>
 
-        <spring:bind path="father_name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="father_name" class="form-control" placeholder="Father Name"/>
-                <form:errors path="father_name"/>
-            </div>
-        </spring:bind>
+            <c:if test="${empty editForm.id}">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+            </c:if>
+            <c:if test="${!empty editForm.id}">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
+                <br/>
+                <div><a href="${contextPath}/personnel" title="add">add</a></div>
+            </c:if>
 
-        <c:if test="${empty editForm.id}">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
-        </c:if>
-        <c:if test="${!empty editForm.id}">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
-            <br/>
-            <div><a href="${contextPath}/personnel" title="add">add</a></div>
-        </c:if>
-
-    </form:form>
+        </form:form>
+    </c:if>
 
     <div class="page-header"><h1> Personnel </h1></div>
     <div class="panel">

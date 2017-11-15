@@ -1,7 +1,7 @@
 package com.defaulty.autopark.validator;
 
 import com.defaulty.autopark.filter.RepairEncoding;
-import com.defaulty.autopark.model.data.Auto;
+import com.defaulty.autopark.model.Auto;
 import com.defaulty.autopark.service.auto.AutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -54,7 +54,7 @@ public class AutoValidator implements Validator {
     }
 
     private void validatePersonnel(Auto auto, Errors errors) {
-        auto.setPersonnel_str(convert(auto.getPersonnel_str()));
+        auto.setAutoPersonnelStr(convert(auto.getAutoPersonnelStr()));
     }
 
     private String convert(String s){

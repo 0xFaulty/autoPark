@@ -1,7 +1,7 @@
 package com.defaulty.autopark.validator;
 
 import com.defaulty.autopark.filter.RepairEncoding;
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.User;
 import com.defaulty.autopark.service.user.UserService;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.joda.time.format.DateTimeFormat;
@@ -105,7 +105,7 @@ public class UserValidator implements Validator {
     }
 
     public void validateNewPassword(User user, Errors errors) {
-        user.setNewPassword(convert(user.getPassword()));
+        user.setNewPassword(convert(user.getNewPassword()));
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "newPassword", "Required");
         if (user.getNewPassword().length() < 5 || user.getNewPassword().length() > 32) {

@@ -1,7 +1,6 @@
 package com.defaulty.autopark.dao.journal;
 
-import com.defaulty.autopark.model.data.Journal;
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.Journal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;

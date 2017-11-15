@@ -1,7 +1,7 @@
 package com.defaulty.autopark.validator;
 
 import com.defaulty.autopark.filter.RepairEncoding;
-import com.defaulty.autopark.model.data.Route;
+import com.defaulty.autopark.model.Route;
 import com.defaulty.autopark.service.routes.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

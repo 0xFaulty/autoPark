@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta HTTP-EQUIV="REFRESH" CONTENT="csrf_timeout_in_seconds">
 
     <title>Log in with your account</title>
 
@@ -43,7 +44,7 @@
 
         <br/><br/>
         <p>Roles:</p>
-        <p>(after run script /resources/database.sql)</p>
+        <p>(after run sql script)</p>
 
         <b>ROLE_ADMIN</b> <br/>
         Login:<span style="color: royalblue">admin</span> Password: <span style="color: royalblue">12345678</span>

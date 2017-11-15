@@ -3,9 +3,9 @@ package com.defaulty.autopark.service.user;
 import com.defaulty.autopark.dao.user.AddressDao;
 import com.defaulty.autopark.dao.user.RoleDao;
 import com.defaulty.autopark.dao.user.UserRepository;
-import com.defaulty.autopark.model.user.Address;
-import com.defaulty.autopark.model.user.Role;
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.Address;
+import com.defaulty.autopark.model.Role;
+import com.defaulty.autopark.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -98,6 +98,16 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void activateToggle(long id) {
         this.userDao.activateToggleUser(id);
+    }
+
+    @Override
+    public boolean hasRole(User user, UserRoles userRoles) {
+        Set<Role> roleSet = user.getRoles();
+        for (Role role : roleSet) {
+            if (role.getName().equals(userRoles.name()))
+                return true;
+        }
+        return false;
     }
 
 }

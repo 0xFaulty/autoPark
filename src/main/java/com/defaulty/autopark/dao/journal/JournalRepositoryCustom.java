@@ -1,6 +1,6 @@
 package com.defaulty.autopark.dao.journal;
 
-import com.defaulty.autopark.model.data.Journal;
+import com.defaulty.autopark.model.Journal;
 
 import java.util.List;
 

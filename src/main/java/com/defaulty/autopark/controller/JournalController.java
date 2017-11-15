@@ -1,8 +1,6 @@
 package com.defaulty.autopark.controller;
 
-import com.defaulty.autopark.model.data.Auto;
-import com.defaulty.autopark.model.data.AutoPersonnel;
-import com.defaulty.autopark.model.data.Journal;
+import com.defaulty.autopark.model.Journal;
 import com.defaulty.autopark.service.auto.AutoService;
 import com.defaulty.autopark.service.journal.JournalService;
 import com.defaulty.autopark.service.routes.RouteService;
@@ -17,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class JournalController {
@@ -33,11 +33,19 @@ public class JournalController {
     @Autowired
     private JournalValidator journalValidator;
 
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value = "/journal", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("editForm", new Journal());
+        if (httpServletRequest.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("editActive", true);
+            model.addAttribute("editForm", new Journal());
+        } else
+            model.addAttribute("editActive", false);
+
         model.addAttribute("itemList", this.journalService.list());
         model.addAttribute("autoList", this.autoService.list());
         model.addAttribute("routeList", this.routeService.list());
@@ -47,6 +55,9 @@ public class JournalController {
 
     @RequestMapping(value = "journal/add", method = RequestMethod.POST)
     public String add(@ModelAttribute("editForm") Journal editForm, BindingResult bindingResult, Model model) {
+
+        if (!httpServletRequest.isUserInRole("ROLE_ADMIN"))
+            return "redirect:/tables/autos";
 
         model.addAttribute("itemList", this.journalService.list());
         model.addAttribute("autoList", this.autoService.list());
@@ -58,8 +69,8 @@ public class JournalController {
             return "tables/journal";
         }
 
-        editForm.setAuto_id(autoService.convert(editForm.getAuto_str()));
-        editForm.setRoute_id(routeService.convert(editForm.getRoute_str()));
+        editForm.setAuto(autoService.convert(editForm.getAuto_str()));
+        editForm.setRoute(routeService.convert(editForm.getRoute_str()));
 
         if (editForm.getId() == null) {
             this.journalService.add(editForm);
@@ -79,8 +90,12 @@ public class JournalController {
 
     @RequestMapping("/journal/edit/{id}")
     public String edit(@PathVariable("id") int id, Model model) {
+        if (httpServletRequest.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("editActive", true);
+            model.addAttribute("editForm", this.journalService.getById(id));
+        } else
+            model.addAttribute("editActive", false);
 
-        model.addAttribute("editForm", this.journalService.getById(id));
         model.addAttribute("itemList", this.journalService.list());
         model.addAttribute("autoList", this.autoService.list());
         model.addAttribute("routeList", this.routeService.list());

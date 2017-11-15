@@ -11,4 +11,6 @@ public interface ReportService {
 
     Set<ReportType> getAvailableReports();
 
+    void recheckReports();
+
 }

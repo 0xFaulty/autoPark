@@ -1,12 +1,12 @@
 package com.defaulty.autopark.service.auto;
 
 import com.defaulty.autopark.dao.auto.AutoRepository;
-import com.defaulty.autopark.model.data.Auto;
+import com.defaulty.autopark.model.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
 
 @Service
 public class AutoServiceImpl implements AutoService {

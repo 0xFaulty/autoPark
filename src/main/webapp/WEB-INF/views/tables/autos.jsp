@@ -40,63 +40,66 @@
 
     <c:url var="addAction" value="/autos/add"/>
 
-    <form:form action="${addAction}" method="POST" modelAttribute="editForm" class="form-signin">
-        <div class="page-header">
-            <c:if test="${empty editForm.id}"><h2 class="form-signin-heading">Add Auto</h2></c:if>
-            <c:if test="${!empty editForm.id}"><h2 class="form-signin-heading">Edit Auto</h2></c:if>
-        </div>
-        <c:if test="${!empty editForm.id}">
-            <spring:bind path="id">
+    <c:if test="${editActive}">
+        <form:form action="${addAction}" method="POST" modelAttribute="editForm" class="form-signin">
+            <div class="page-header">
+                <c:if test="${empty editForm.id}"><h2 class="form-signin-heading">Add Auto</h2></c:if>
+                <c:if test="${!empty editForm.id}"><h2 class="form-signin-heading">Edit Auto</h2></c:if>
+            </div>
+            <c:if test="${!empty editForm.id}">
+                <spring:bind path="id">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <form:input path="id" readonly="true" size="8" class="form-control"/>
+                        <form:hidden path="id"/>
+                        <form:errors path="id"/>
+                    </div>
+                </spring:bind>
+            </c:if>
+
+            <spring:bind path="num">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input path="id" readonly="true" size="8" class="form-control"/>
-                    <form:hidden path="id"/>
-                    <form:errors path="id"/>
+                    <form:input type="text" path="num" class="form-control" placeholder="Number"/>
+                    <form:errors path="num"/>
                 </div>
             </spring:bind>
-        </c:if>
 
-        <spring:bind path="num">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="num" class="form-control" placeholder="Number"/>
-                <form:errors path="num"/>
-            </div>
-        </spring:bind>
+            <spring:bind path="color">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input type="text" path="color" class="form-control" placeholder="Color"/>
+                    <form:errors path="color"/>
+                </div>
+            </spring:bind>
 
-        <spring:bind path="color">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="color" class="form-control" placeholder="Color"/>
-                <form:errors path="color"/>
-            </div>
-        </spring:bind>
+            <spring:bind path="mark">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input type="text" path="mark" class="form-control" placeholder="Mark"/>
+                    <form:errors path="mark"/>
+                </div>
+            </spring:bind>
 
-        <spring:bind path="mark">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="mark" class="form-control" placeholder="Mark"/>
-                <form:errors path="mark"/>
-            </div>
-        </spring:bind>
+            <spring:bind path="autoPersonnelStr">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:select path="autoPersonnelStr" cssClass="form-control">
+                        <c:forEach var='persList' items='${personnelList}' >
+                            <form:option value="${persList}" />
+                        </c:forEach>
+                    </form:select>
+                    <form:errors path="autoPersonnelStr"/>
+                </div>
+            </spring:bind>
 
-        <spring:bind path="personnel_str">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:select path="personnel_str" cssClass="form-control">
-                    <c:forEach var='persList' items='${personnelList}' >
-                        <form:option value="${persList}" />
-                    </c:forEach>
-                </form:select>
-                <form:errors path="personnel_str"/>
-            </div>
-        </spring:bind>
+            <c:if test="${empty editForm.id}">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Add Auto</button>
+            </c:if>
+            <c:if test="${!empty editForm.id}">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Edit Auto</button>
+                <br/>
+                <div><a href="${contextPath}/autos" title="add">add</a></div>
+            </c:if>
 
-        <c:if test="${empty editForm.id}">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Add Auto</button>
-        </c:if>
-        <c:if test="${!empty editForm.id}">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Edit Auto</button>
-            <br/>
-            <div><a href="${contextPath}/autos" title="add">add</a></div>
-        </c:if>
+        </form:form>
 
-    </form:form>
+    </c:if>
 
     <div class="page-header"><h1> Auto List </h1></div>
     <div class="panel">
@@ -117,7 +120,7 @@
                     <td>${editForm.num}</td>
                     <td>${editForm.color}</td>
                     <td>${editForm.mark}</td>
-                    <td>[${editForm.personnel_id.id}] ${editForm.personnel_id.first_name}</td>
+                    <td>[${editForm.autoPersonnel.id}] ${editForm.autoPersonnel.first_name}</td>
                     <td><a href="<c:url value='/autos/edit/${editForm.id}'/>">Edit</a></td>
                     <td><a href="<c:url value='/autos/remove/${editForm.id}'/>">Delete</a></td>
                 </tr>

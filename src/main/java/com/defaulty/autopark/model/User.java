@@ -1,4 +1,4 @@
-package com.defaulty.autopark.model.user;
+package com.defaulty.autopark.model;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -55,6 +55,9 @@ public class User {
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    @Transient
+    private String role_str;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_addresses", joinColumns = @JoinColumn(name = "user_id"),
@@ -181,4 +184,33 @@ public class User {
         this.lastUpdatedTimestamp = lastUpdatedTimestamp;
     }
 
+    public String getRole_str() {
+        return role_str;
+    }
+
+    public void setRole_str(String role_str) {
+        this.role_str = role_str;
+    }
+
+    public void addRole(Role role){
+        roles.add(role);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        return username != null ? username.equals(user.username) : user.username == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        return result;
+    }
 }

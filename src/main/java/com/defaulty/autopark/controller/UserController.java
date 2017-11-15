@@ -1,6 +1,7 @@
 package com.defaulty.autopark.controller;
 
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.User;
+import com.defaulty.autopark.service.role.RoleService;
 import com.defaulty.autopark.service.user.UserService;
 import com.defaulty.autopark.validator.UserValidator;
 import org.slf4j.Logger;
@@ -24,12 +25,16 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     private UserValidator userValidator;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value = "admin", method = RequestMethod.GET)
     public String itemList(Model model) {
+
         model.addAttribute("editForm", new User());
         model.addAttribute("itemList", this.userService.list());
 
@@ -82,6 +87,7 @@ public class UserController {
             model.addAttribute("editForm", new User());
 
         model.addAttribute("itemList", this.userService.list());
+        model.addAttribute("roleList", this.roleService.list());
 
         return "user/admin";
     }

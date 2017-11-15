@@ -1,6 +1,6 @@
 package com.defaulty.autopark.dao.auto;
 
-import com.defaulty.autopark.model.data.Auto;
+import com.defaulty.autopark.model.Auto;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package com.defaulty.autopark.service.auto;
 
-import com.defaulty.autopark.model.data.Auto;
-import com.defaulty.autopark.model.data.AutoPersonnel;
+import com.defaulty.autopark.model.Auto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.defaulty.autopark.model.data;
+package com.defaulty.autopark.model;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,7 +21,7 @@ public class AutoPersonnel {
     @Column(name = "father_name")
     private String father_name;
 
-    @OneToMany(mappedBy = "personnel_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "autoPersonnel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Auto> autos;
 
     public Long getId() {

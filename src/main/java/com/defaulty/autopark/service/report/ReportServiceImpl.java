@@ -1,9 +1,10 @@
 package com.defaulty.autopark.service.report;
 
-import com.defaulty.autopark.model.data.Auto;
-import com.defaulty.autopark.model.data.AutoPersonnel;
-import com.defaulty.autopark.model.data.Journal;
-import com.defaulty.autopark.model.data.Route;
+import com.defaulty.autopark.files.FileCRUD;
+import com.defaulty.autopark.model.Auto;
+import com.defaulty.autopark.model.AutoPersonnel;
+import com.defaulty.autopark.model.Journal;
+import com.defaulty.autopark.model.Route;
 import com.defaulty.autopark.service.auto.AutoService;
 import com.defaulty.autopark.service.journal.JournalService;
 import com.defaulty.autopark.service.personnel.AutoPersonnelService;
@@ -17,7 +18,9 @@ import javax.persistence.PersistenceContext;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Time;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -43,17 +46,7 @@ public class ReportServiceImpl implements ReportService {
     private EntityManager entityManager;
 
     public ReportServiceImpl() {
-        File[] files = path.listFiles();
-        if (files != null && files.length > 0) {
-            for (File file : files) {
-                try {
-                    String name = FilenameUtils.getBaseName(file.getName());
-                    ReportType type = ReportType.valueOf(name);
-                    reportHash.putIfAbsent(type, file);
-                } catch (IllegalArgumentException ignored) {
-                }
-            }
-        }
+        recheckReports();
     }
 
     private static final File path = new File("C:/Users/0xfaulty/YandexDisk/Sourses/Java/Auto_park/reports/");
@@ -78,6 +71,22 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Set<ReportType> getAvailableReports() {
         return reportHash.keySet();
+    }
+
+    @Override
+    public void recheckReports() {
+        reportHash.clear();
+        File[] files = path.listFiles();
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                try {
+                    String name = FilenameUtils.getBaseName(file.getName());
+                    ReportType type = ReportType.valueOf(name);
+                    reportHash.putIfAbsent(type, file);
+                } catch (IllegalArgumentException ignored) {
+                }
+            }
+        }
     }
 
     private void getTD() {
@@ -115,9 +124,9 @@ public class ReportServiceImpl implements ReportService {
             List<Journal> top = entityManager.createQuery(
                     "SELECT c FROM Journal c WHERE (c.time_in - c.time_out) " +
                             "IN (SELECT min(cc.time_in - cc.time_out)" +
-                            "FROM Journal as cc GROUP BY route_id) " +
-                            "AND c.route_id " +
-                            "IN (SELECT route_id FROM Journal as ccc GROUP BY route_id)", Journal.class)
+                            "FROM Journal as cc GROUP BY route) " +
+                            "AND c.route " +
+                            "IN (SELECT route FROM Journal as ccc GROUP BY route)", Journal.class)
                     .getResultList();
 
             for (Journal journal : top) {
@@ -125,9 +134,9 @@ public class ReportServiceImpl implements ReportService {
                     long time_in = journal.getTime_in().getTime();
                     long time_out = journal.getTime_out().getTime();
                     Time best_time = new Time(time_in - time_out);
-                    Auto auto = journal.getAuto_id();
-                    AutoPersonnel personnel = auto.getPersonnel_id();
-                    Route route = journal.getRoute_id();
+                    Auto auto = journal.getAuto();
+                    AutoPersonnel personnel = auto.getAutoPersonnel();
+                    Route route = journal.getRoute();
 
                     sb.append("\tRoute: '").append(route.getName())
                             .append("'\n\tBest time: ").append(best_time)

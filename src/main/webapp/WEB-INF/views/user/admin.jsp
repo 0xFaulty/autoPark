@@ -109,6 +109,17 @@
             </div>
         </spring:bind>
 
+        <%--<spring:bind path="role_str">--%>
+            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
+                <%--<form:select path="role_str" cssClass="form-control">--%>
+                    <%--<c:forEach var='roleList' items='${roleList}' >--%>
+                        <%--<form:option value="${roleList}" />--%>
+                    <%--</c:forEach>--%>
+                <%--</form:select>--%>
+                <%--<form:errors path="role_str"/>--%>
+            <%--</div>--%>
+        <%--</spring:bind>--%>
+
         <spring:bind path="active">
             <form:label path="active">
                 <form:checkbox path="active"/>

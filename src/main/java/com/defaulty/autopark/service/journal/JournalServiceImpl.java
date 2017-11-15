@@ -1,7 +1,7 @@
 package com.defaulty.autopark.service.journal;
 
 import com.defaulty.autopark.dao.journal.JournalRepository;
-import com.defaulty.autopark.model.data.Journal;
+import com.defaulty.autopark.model.Journal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

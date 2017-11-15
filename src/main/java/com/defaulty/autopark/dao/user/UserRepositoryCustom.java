@@ -1,6 +1,6 @@
 package com.defaulty.autopark.dao.user;
 
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.User;
 
 import java.util.List;
 

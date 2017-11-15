@@ -1,6 +1,7 @@
 package com.defaulty.autopark.service.user;
 
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.Role;
+import com.defaulty.autopark.model.User;
 
 import java.util.List;
 
@@ -21,4 +22,7 @@ public interface UserService {
     List<User> list();
 
     void activateToggle(long id);
+
+    boolean hasRole(User user, UserRoles userRoles);
+
 }

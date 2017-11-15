@@ -1,6 +1,6 @@
 package com.defaulty.autopark.controller;
 
-import com.defaulty.autopark.model.user.User;
+import com.defaulty.autopark.model.User;
 import com.defaulty.autopark.service.security.SecurityService;
 import com.defaulty.autopark.service.user.UserService;
 import com.defaulty.autopark.validator.UserValidator;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 @Controller
@@ -29,6 +30,9 @@ public class AuthController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
@@ -88,6 +92,8 @@ public class AuthController {
             model.addAttribute("error", "Your account was blocked.");
             return "redirect:/login";
         }
+
+        model.addAttribute("editActive", httpServletRequest.isUserInRole("ROLE_ADMIN"));
 
         return "auth/welcome";
     }

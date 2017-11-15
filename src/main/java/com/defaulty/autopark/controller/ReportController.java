@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,18 +27,32 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value = "/report/{reportName}", method = RequestMethod.GET)
     public String generateReport(@PathVariable int reportName) {
-        switch (reportName) {
-            case 1:
-                reportService.generateReport(ReportType.CAR_OWNERS);
-                break;
-            case 2:
-                reportService.generateReport(ReportType.TOP_TIME);
-                break;
+        if (httpServletRequest.isUserInRole("ROLE_ADMIN")) {
+            switch (reportName) {
+                case 1:
+                    reportService.generateReport(ReportType.CAR_OWNERS);
+                    break;
+                case 2:
+                    reportService.generateReport(ReportType.TOP_TIME);
+                    break;
+            }
         }
+
+        return "redirect:/report";
+    }
+
+    @RequestMapping(value = "/reportrecheck", method = RequestMethod.GET)
+    public String recheckReport() {
+
+        if (httpServletRequest.isUserInRole("ROLE_ADMIN"))
+            reportService.recheckReports();
 
         return "redirect:/report";
     }
@@ -45,6 +60,7 @@ public class ReportController {
     @RequestMapping(value = "/report", method = RequestMethod.GET)
     public String showPage(Model model) {
 
+        model.addAttribute("editActive", httpServletRequest.isUserInRole("ROLE_ADMIN"));
         model.addAttribute("reportSet", reportService.getAvailableReports());
 
         return "report/report";

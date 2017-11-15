@@ -1,6 +1,6 @@
 package com.defaulty.autopark.dao.route;
 
-import com.defaulty.autopark.model.data.Route;
+import com.defaulty.autopark.model.Route;
 
 import java.util.List;
 

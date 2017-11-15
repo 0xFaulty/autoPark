@@ -10,14 +10,14 @@ Report about routes records:
 	Auto number: г777тк
 	Personnel: Петя Обломов
 
-	Route: 'Домой'
+	Route: 'Купчино'
 	Best time: 14:26:56
 	Auto number: х778нн
 	Personnel: Петя Обломов
 
-	Route: 'Наверх'
-	Best time: 14:11:21
-	Auto number: м666оо
+	Route: 'Павловск'
+	Best time: 14:11:01
+	Auto number: а000вв
 	Personnel: Коля Расломов
 
 

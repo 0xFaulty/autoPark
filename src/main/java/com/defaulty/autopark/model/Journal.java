@@ -1,6 +1,4 @@
-package com.defaulty.autopark.model.data;
-
-import org.springframework.format.annotation.DateTimeFormat;
+package com.defaulty.autopark.model;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,11 +27,11 @@ public class Journal {
 
     @ManyToOne
     @JoinColumn(name = "auto_id")
-    private Auto auto_id;
+    private Auto auto;
 
     @ManyToOne
     @JoinColumn(name = "route_id")
-    private Route route_id;
+    private Route route;
 
     @Transient
     private String auto_str;
@@ -65,20 +63,20 @@ public class Journal {
         this.time_in = time_in;
     }
 
-    public Auto getAuto_id() {
-        return auto_id;
+    public Auto getAuto() {
+        return auto;
     }
 
-    public void setAuto_id(Auto auto_id) {
-        this.auto_id = auto_id;
+    public void setAuto(Auto auto) {
+        this.auto = auto;
     }
 
-    public Route getRoute_id() {
-        return route_id;
+    public Route getRoute() {
+        return route;
     }
 
-    public void setRoute_id(Route route_id) {
-        this.route_id = route_id;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
     public String getAuto_str() {
@@ -119,8 +117,8 @@ public class Journal {
                 "id=" + id +
                 ", time_out=" + time_out +
                 ", time_in=" + time_in +
-                ", auto_id=" + auto_id.getId() +
-                ", route_id=" + route_id +
+                ", auto=" + auto.getId() +
+                ", route=" + route +
                 '}';
     }
 

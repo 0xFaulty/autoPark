@@ -1,7 +1,7 @@
 package com.defaulty.autopark.validator;
 
 import com.defaulty.autopark.filter.RepairEncoding;
-import com.defaulty.autopark.model.data.Journal;
+import com.defaulty.autopark.model.Journal;
 import com.defaulty.autopark.service.journal.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

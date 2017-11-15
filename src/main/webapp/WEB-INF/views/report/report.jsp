@@ -37,12 +37,15 @@
         </c:if>
     </div>
 
-
-    <div class="page-header"><a href="${contextPath}/report/1" title="Report 1">Rebuild personnel report</a></div>
-    <div class="page-header"><a href="${contextPath}/report/2" title="Report 2">Rebuild routes record report</a></div>
+    <c:if test="${editActive}">
+        <div class="page-header"><a href="${contextPath}/reportrecheck" title="Recheck">Recheck available</a></div>
+        <div class="page-header"><a href="${contextPath}/report/1" title="Report 1">Rebuild personnel report</a></div>
+        <div class="page-header"><a href="${contextPath}/report/2" title="Report 2">Rebuild record report</a></div>
+    </c:if>
 
     <c:forEach items="${reportSet}" var="cReport">
-        <div class="page-header"><a href="${contextPath}/dloadreport/${cReport.name()}" title="Report 1">Download ${cReport.description}</a></div>
+        <div class="page-header"><a href="${contextPath}/dloadreport/${cReport.name()}"
+                                    title="Report 1">Download ${cReport.description}</a></div>
     </c:forEach>
 
 </div>

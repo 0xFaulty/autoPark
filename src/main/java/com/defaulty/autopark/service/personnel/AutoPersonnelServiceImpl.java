@@ -1,7 +1,7 @@
 package com.defaulty.autopark.service.personnel;
 
 import com.defaulty.autopark.dao.personnel.AutoPersonnelRepository;
-import com.defaulty.autopark.model.data.AutoPersonnel;
+import com.defaulty.autopark.model.AutoPersonnel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

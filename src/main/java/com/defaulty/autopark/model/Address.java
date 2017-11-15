@@ -1,4 +1,4 @@
-package com.defaulty.autopark.model.user;
+package com.defaulty.autopark.model;
 
 import javax.persistence.*;
 import java.util.Set;
